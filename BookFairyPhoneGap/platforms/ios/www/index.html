@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.2.css" />
+        <link rel="stylesheet" type="text/css" href="css/BookFairyGreen.css" />
+        <link rel="stylesheet" type="text/css" href="css/BookFairyGreen.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.min.css" />
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.2.js"></script>
+
+
+        <title>BookFairy Mobile</title>
+        <script>
+            function init() {
+                document.addEventListener("deviceready", searchReady);
+            }
+            
+            function searchReady() {
+                alert("search_ready ready");
+                document.getElementById("send_search").addEventListener("click", (alert("Clicked!");
+            }
+                                                                                  
+            function showPopup() {
+                var input = document.getElementById("book_title").value;
+                alert(input);
+            }
+                                                                                  
+            function sendRequest() {
+                alert("got it");
+                if($("#book_title").val().length > 0: {
+                alert($("#book_title").val());
+                }
+                var book_title = $("#book_title").value;
+                alert("Book title is" + book_title);
+
+            }
+                   
+                   function startup(){
+                   document.getElementById("searchButton").addEventListener("click", handleSearch);
+                   }
+                   
+                   function handleSearch(e){
+                   var search = document.getElementById("name").value;
+                   //What parts of the contact we will search
+                   var fields = ["displayName", "name"];
+                   //Options for the search
+                   var options = new ContactFindOptions();
+                   options.filter = search;
+                   options.multiple = true;
+                   document.getElementById("results").innerHTML="Searching...";
+                   navigator.contacts.find(fields, contactSuccess, contactError, options);
+                   }
+                   
+                   function contactError(e){
+                   document.getElementById("results").innerHTML="";
+                   navigator.notification.alert("Sorry, an error was thrown!");
+                   }
+                   
+                   function contactSuccess(results){
+                   //No max, so we will default to only 10
+                   var s = "";
+                   for (var i = 0; i < Math.min(10, results.length); i++) {
+                   s += "<p>"+results[i].displayName+"</p>";
+                   }
+                   
+                   document.getElementById("results").innerHTML=s;
+                   }
+
+                (function($) {
+                    lib_location = forms.ChoiceField(
+                    label="Library Location:",
+                    choices = [
+                         ("4", "Anza"),
+                         ("5", "Bayview"),
+                         ("6", "Bernal Heights"),
+                         ("32", "Branch Bookmobile 1"),
+                         ("8", "Chinatown"),
+                         ("9", "Eureka Valley"),
+                         ("10", "Excelsior"),
+                         ("11", "Glen Park"),
+                         ("12", "Golden Gate Valley"),
+                         ("13", "Ingleside"),
+                         ("14", "Library on Wheels"),
+                         ("3", "Main"),
+                         ("15", "Marina"),
+                         ("16", "Merced"),
+                         ("17", "Mission"),
+                         ("18", "Mission Bay"),
+                         ("19", "Noe Valley"),
+                         ("20", "North Beach"),
+                         ("21", "Oceanview"),
+                         ("22", "Ortega"),
+                         ("23", "Park"),
+                         ("24", "Parkside"),
+                         ("25", "Portola"),
+                         ("26", "Potrero"),
+                         ("27", "Presidio"),
+                         ("28", "Richmond"),
+                         ("29", "Sunset"),
+                         ("30", "Visitacion Valley"),
+                         ("31", "West Portal"),
+                         ("34", "Western Addition"),
+                     ])
+                 
+                    var library_base_url = "http://sflib1.sfpl.org/search/X"
+                    var get_title = function() {
+                    var book_title = ($('#book_title').val());
+                    var lib_location = ($('#lib_location').val());
+                    alert(book_title);}
+                    $("#results").text(book_title, lib_location);
+                    
+                }
+                 
+                 function url_ize_title(book_title) {
+                    var title_words = book_title.split(' ');
+                 var title_length = title_words.length;
+                 for (int i = 1; i < title_length, i++) {
+                    
+                 }
+                 if title_length >= 1) {
+                   
+                   }
+                 for (var i = 0; i < title_length; i++) {
+                    
+                 }
+                    var book_url = title_words
+                    check_library(book_url);
+                 }
+                 
+                function check_library(book_url) {
+                    
+                    $.ajax({
+                    url: library_base_url + "?SEARCH=" + joined_query + "&x=0&y=0&searchscope=" + lib_location + "&p=&l=eng&m=a&Da=&Db=&SORT=D&availlim=1"]
+                    dataType: 'jsonp',
+                    jsonp: 'jsoncallback',
+                    timeout: 5000,
+                    success: function(data, status){
+                    $.each(data, function(i,item){
+                           var landmark = '<h1>'+item.name+'</h1>'
+                           + '<p>'+item.latitude+'<br>'
+                           + item.longitude+'</p>';
+                           output.append(landmark);
+                           });
+                    },
+                    error: function(){
+                    output.text('There was an error loading the data.');
+                    }
+                    });
+                }
+             
+                $(document).on("ready", function() {
+                     $("#send_search").on("click", get_title);
+                }
+             }
+             )(jQuery);
+        </script>
+    </head>
+    <body onload="init()">
+        
+    <div data-role="page" data-theme="a" id="Page1">
+        <div data-role="header" data-theme="a" data-pos="center">
+            <h3>BookFairy</h3>
+        </div>
+        <div data-role="content" data-theme="a" id="Page1_Content">
+            <form>
+                <label for="book_title">Title of the book you want:</label>
+                <input type="text" name="book_search" data-clear-btn="true" id="book_title" value="" placeholder="Book title" />
+                </ br>
+                <label for="lib_location" class="select">SFPL Library Branch:</label>
+                <select name="lib_location" id="lib_location">
+                    <option value="4">Anza</option>
+                    <option value="5">Bayview</option>
+                    <option value="6">Bernal Heights</option>
+                    <option value="32">Branch Bookmobile 1</option>
+                    <option value="8">Chinatown</option>
+                    <option value="9">Eureka Valley</option>
+                    <option value="10">Excelsior</option>
+                    <option value="11">Glen Park</option>
+                    <option value="12">Golden Gate Valley</option>
+                    <option value="13">Ingleside</option>
+                    <option value="14">Library on Wheels</option>
+                    <option value="3">Main</option>
+                    <option value="15">Marina</option>
+                    <option value="16">Merced</option>
+                    <option value="17">Mission</option>
+                    <option value="18">Mission Bay</option>
+                    <option value="19">Noe Valley</option>
+                    <option value="20">North Beach</option>
+                    <option value="21">Oceanview</option>
+                    <option value="22">Ortega</option>
+                    <option value="23">Park</option>
+                    <option value="24">Parkside</option>
+                    <option value="25">Portola</option>
+                    <option value="26">Potrero</option>
+                    <option value="27">Presidio</option>
+                    <option value="28">Richmond</option>
+                    <option value="29">Sunset</option>
+                    <option value="30">Visitacion Valley</option>
+                    <option value="31">West Portal</option>
+                    <option value="34">Western Addition</option>
+                </select>
+                <a href="#" data-role="button" id="send_search" onclick="showPopup()">Is it in?</a>
+                <div id="results"></div>
+            </form>
+        </div>
+        </ br>
+        <div id="search_results">
+        </div>
+        </ br>
+        </ br>
+        <div data-role="footer" data-theme="a" data-position="fixed">
+            <h3>&#169 BookFairy Mobile</h3>
+        </div>
+    </div>
+    </body>
+</html>
